@@ -55,6 +55,11 @@ const arrOfImgs = [
   "pics/cadyHeron.jpg",
 ];
 
+const arrOfNos = [
+  "sounds/noNo.mp3",
+  "/sounds/noSound.mp3",
+];
+
 imgToChange.each(function(idx) {
   const newRandomNumber = Math.floor(Math.random() * 4);
   $(this).attr('src',  chrome.runtime.getURL(arrOfImgs[newRandomNumber]));
@@ -62,31 +67,31 @@ imgToChange.each(function(idx) {
 
 let pToChange = $('p');
 
-
 pToChange.each(function(idx) {
   const newRandomNumber = Math.floor(Math.random() * 360);
   $(this).attr('style', `transform: rotate(-${newRandomNumber}deg);`);
 })
 
-let aToChange = $('a');
 
-// aToChange.each(function(idx) {
-//   // const newRandomNumber = Math.floor(Math.random() * 360);
-//   $(this).attr('style', `transform:skew(60deg, -30deg) scaleY(.66667);;`);
-// })
 
-// const localImg = chrome.runtime.getURL("pics/reginaGeorge.jpg");
-// imgToChange.attr('src', localImg);
+const audioPath1 = chrome.runtime.getURL("sounds/noSound.mp3");
+const audioPath2 = chrome.runtime.getURL("sounds/noNo.mp3");
 
-const audioPath = chrome.runtime.getURL("sounds/noSound.mp3");
-
-const myAudio = new Audio(audioPath);
+const myAudio1 = new Audio(audioPath1);
+const myAudio2 = new Audio(audioPath2);
 // myAudio.play();
 $(document).ready(() => {
   $('a').on('click', (e) => {
     e.preventDefault();
-    myAudio.play();
+    myAudio2.play();
   })
+  history.pushState(null, null, location.href);
+  history.back();
+  history.forward();
+  window.onpopstate = function () {
+    myAudio1.play();
+    history.go(1); 
+  };
 })
 
 

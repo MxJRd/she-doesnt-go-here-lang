@@ -15,7 +15,7 @@
     "js": ["jquery-3.5.1.js", "background.js"]
   },
   "web_accessible_resources": [
-    "sounds/noSound.mp3",
+    "sounds/*.mp3",
     "pics/*.jpg"
   ]
 }
