@@ -13,5 +13,9 @@
   },
   "background": {
     "js": ["jquery-3.5.1.js", "background.js"]
-  }
+  },
+  "web_accessible_resources": [
+    "sounds/noSound.mp3",
+    "pics/*.jpg"
+  ]
 }
