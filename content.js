@@ -6,14 +6,11 @@ const bodyContent = document.getElementsByTagName('body')[0].innerHTML;
 
 /**************************************************************************HEADER TAG LOGIC****************************************************************************/
 /**************************************************************************HEADER TAG LOGIC****************************************************************************/
-// const h3Content = document.getElementsByTagName('h3')[0].innerHTML;
-// console.log($(`h3`));
 
 //for loop through the array list of nodes
 //save a quote to a variable inside of the for loop, so that it's redeclared upon reiteration
 // string literal the quote using the replaceWith method
-console.log(document.querySelectorAll("h1, h2, h3, h4, h5, h6").length)
-const headerList = document.querySelectorAll("h1, h2, h3, h4, h5, h6")
+const headerList = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
 const replacementQuotes = [ 'That was so fetch.', 'On Wednesdays we wear pink.', "That’s why her hair is so big. It’s full of secrets.", "If you’re from Africa, why are you white?",
 "Oh my god Karen, you can’t just ask people why they’re white.", "But you’re, like, really pretty. So you agree? You think you’re really pretty?",
 "I’m not like a regular mom, I’m a cool mom!", "Irregardless, ex-boyfriends are off-limits to friends. That’s just, like, the rules of feminism.", 
@@ -38,7 +35,39 @@ const replacementQuotes = [ 'That was so fetch.', 'On Wednesdays we wear pink.',
 "Wow. Don’t you look like a walking felony.", "If I’m gonna be a senator, well I need to marry a Jackie, not a Marilyn.", "Don’t stomp your little last season Prada shoes at me, honey.",
 "Do you think she woke up one morning and said, “I think I’ll go to law school today?", "If you’re going to let one stupid prick ruin your life, you’re not the girl I thought you were.",
 "I’m taking the dog, dumbass!", "Could I have been any more goddamn spastic?", "Oh my God, the bend and snap, works every time.", "I know I’m a fraud! It’s not like normal women can have this ass!",
-"I’ve already lost my husband, I’d rather go to jail than lose my reputation.", "Brick, where'd you get that hand grenade?",
+"I’ve already lost my husband, I’d rather go to jail than lose my reputation.", "Brick, where'd you get that hand grenade?", "I need a boyfriend who's not such a complete bonehead.",
+
+];
+
+const arrOfImgs = [
+  "pics/reginaGeorge.jpg",
+  "pics/gretchenWinters.jpg",
+  "pics/karenSmithjpg.jpg",
+  "pics/msNorbery.jpg",
+  "pics/cadyHeron.jpg",
+  "pics/legally-blonde",
+
+];
+
+const arrOfNos = [
+  "sounds/noNo.mp3",
+  "/sounds/noSound.mp3",
+];
+
+const randomColors = [
+  "#FF7F00",
+  "#FF0000",
+  "#FFFF00",
+  "#00FF00",
+  "#0000FF",
+  "#2E2B5F",
+  "#8B00FF",
+  "#8b9aa5",
+  "#a51a63",
+  "#7934bd",
+  "#967708",
+  "#4d5e0f",
+  "#1978f6",
 ];
 
 headerList.forEach(elem => {
@@ -47,53 +76,54 @@ headerList.forEach(elem => {
 })
 
 let imgToChange = $('img');
-const arrOfImgs = [
-  "pics/reginaGeorge.jpg",
-  "pics/gretchenWinters.jpg",
-  "pics/karenSmithjpg.jpg",
-  "pics/msNorbery.jpg",
-  "pics/cadyHeron.jpg",
-];
-
-const arrOfNos = [
-  "sounds/noNo.mp3",
-  "/sounds/noSound.mp3",
-];
-
 imgToChange.each(function(idx) {
   const newRandomNumber = Math.floor(Math.random() * 4);
   $(this).attr('src',  chrome.runtime.getURL(arrOfImgs[newRandomNumber]));
 });
 
-let pToChange = $('p');
+// let liToChange = $('ul');
+// liToChange.each(function(idx) {
+//   const newRandomNumber = Math.floor(Math.random() * 12);
+//   console.log('lis running')
+//   $(this).attr('style', `background-color: ${newRandomNumber};`);
+// })
 
+let pToChange = $('p, li');
 pToChange.each(function(idx) {
-  const newRandomNumber = Math.floor(Math.random() * 360);
+  let newRandomNumber = Math.floor(Math.random() * 360);
   $(this).attr('style', `transform: rotate(-${newRandomNumber}deg);`);
 })
-
-
 
 const audioPath1 = chrome.runtime.getURL("sounds/noSound.mp3");
 const audioPath2 = chrome.runtime.getURL("sounds/noNo.mp3");
 
-const myAudio1 = new Audio(audioPath1);
-const myAudio2 = new Audio(audioPath2);
-// myAudio.play();
-$(document).ready(() => {
+const myAudio1 = new Audio(audioPath1); //dr evil no
+const myAudio2 = new Audio(audioPath2); //nonono
+
+function anchorCanceller() {
   $('a').on('click', (e) => {
     e.preventDefault();
-    myAudio2.play();
+    const newRandomNumber = Math.floor(Math.random() * 12);
+    $(this).attr('style', `background-color: ${newRandomNumber};`);
+    myAudio2.play(); //nonono
   })
+}
+
+function backButtonCanceller() {
   history.pushState(null, null, location.href);
   history.back();
   history.forward();
   window.onpopstate = function () {
-    myAudio1.play();
-    history.go(1); 
+    myAudio1.play(); //dr evil no
+    history.go(1);
   };
-})
+}
 
+$(document).ready(() => {
+  document.title = "Don't you even dare.";
+  anchorCanceller();
+  backButtonCanceller();
+})
 
 /**************************************************************************HEADER TAG LOGIC****************************************************************************/
 /**************************************************************************HEADER TAG LOGIC****************************************************************************/
