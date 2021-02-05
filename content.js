@@ -36,7 +36,8 @@ const replacementQuotes = [ 'That was so fetch.', 'On Wednesdays we wear pink.',
 "Do you think she woke up one morning and said, “I think I’ll go to law school today?", "If you’re going to let one stupid prick ruin your life, you’re not the girl I thought you were.",
 "I’m taking the dog, dumbass!", "Could I have been any more goddamn spastic?", "Oh my God, the bend and snap, works every time.", "I know I’m a fraud! It’s not like normal women can have this ass!",
 "I’ve already lost my husband, I’d rather go to jail than lose my reputation.", "Brick, where'd you get that hand grenade?", "I need a boyfriend who's not such a complete bonehead.",
-
+"I’m sorry. I just hallucinated.", "Is that low-viscosity rayon? With a half-loop top stitching on the hem?", "What Does She Have That You Don't, Three Tits?",
+"Am I On Glue, Or Did We Get Into The Same Law School?","I'm A Law Student Who Just Realized Her Professor Is A Pathetic Asshole.", 
 ];
 
 const arrOfImgs = [
@@ -46,7 +47,7 @@ const arrOfImgs = [
   "pics/msNorbery.jpg",
   "pics/cadyHeron.jpg",
   "pics/legally-blonde",
-
+  "pics/Professor_Callahan.jpg",
 ];
 
 const arrOfNos = [
@@ -80,13 +81,6 @@ imgToChange.each(function(idx) {
   const newRandomNumber = Math.floor(Math.random() * 4);
   $(this).attr('src',  chrome.runtime.getURL(arrOfImgs[newRandomNumber]));
 });
-
-// let liToChange = $('ul');
-// liToChange.each(function(idx) {
-//   const newRandomNumber = Math.floor(Math.random() * 12);
-//   console.log('lis running')
-//   $(this).attr('style', `background-color: ${newRandomNumber};`);
-// })
 
 let pToChange = $('p, li');
 pToChange.each(function(idx) {
